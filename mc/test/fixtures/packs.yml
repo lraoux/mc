@@ -1,0 +1,28 @@
+# == Schema Information
+#
+# Table name: packs
+#
+#  id          :integer          not null, primary key
+#  author_id   :integer          not null
+#  title       :string           not null
+#  description :text             default("crazy cool custom content")
+#  url         :string           not null
+#  prev        :string           not null
+#  downloads   :integer          default(0)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: 1
+  title: MyString
+  description: MyText
+  url: MyString
+
+two:
+  author: 1
+  title: MyString
+  description: MyText
+  url: MyString

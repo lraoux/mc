@@ -1,0 +1,20 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<div id="content"></div>
+
+<i class="menu-icon"></i>
+<div class="nav-menu" style="display: none">
+  <ul class="menu-items">
+    <a href='/new' class='new-pack-link nav-link'>New Pack
+      <div class='highlight-np'></div>
+    </a>
+    <a href='/' class='packs-list-link nav-link'>Packs List
+      <div class='highlight-pl'></div>
+    </a>
+    <a href='delete' class='sign-out nav-link'>Sign Out
+      <div class='highlight-so'></div>
+    </a>
+  </ul>
+</div>
+
+<%= react_router 'routes', 'HistoryLocation' %>

@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: subpackings
+#
+#  id         :integer          not null, primary key
+#  subpack_id :integer
+#  pack_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  subpack_id: 1
+  pack_id: 1
+
+two:
+  subpack_id: 1
+  pack_id: 1

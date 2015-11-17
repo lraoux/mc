@@ -1,0 +1,21 @@
+# == Schema Information
+#
+# Table name: imagings
+#
+#  id         :integer          not null, primary key
+#  image_id   :integer
+#  pack_id    :integer
+#  subpack_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image_id: 1
+  pack_id: 1
+
+two:
+  image_id: 1
+  pack_id: 1

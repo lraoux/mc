@@ -1,0 +1,157 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<% if @in_err || @up_err %>
+  <div class='black-overlay'></div>
+<% else %>
+  <div class='black-overlay' style='display: none;'></div>
+<% end %>
+
+
+
+<div class='signin-bg'></div>
+
+<div id='content' style='display: none'></div>
+
+<% unless @in_err || @up_err %>
+  <div class='welcome'>
+<% else %>
+  <div class='welcome' style='display: none'>
+<% end %>
+  <p>welcome to</p>
+  <h1>Minecraft Customizer</h1>
+
+  <div class='let-me-in'>
+    <div class='let-signin'>
+      Sign in
+    </div>
+    <div class='let-signup'>
+      Sign up
+    </div>
+  </div>
+</div>
+
+<% unless @in_err %>
+  <div class='entry-area signin' style='display: none;'>
+<% else %>
+  <div class='entry-area signin'>
+<% end %>
+
+  <div class='form-title'>
+    <h4>Minecraft</h4>
+    <h3>Customizer</h3>
+  </div>
+
+  <div class="errors signin-errors">
+    <% if flash[:errors] %>
+      <% if /Invalid/.match(flash[:errors][0]) %>
+        <% flash[:errors].each do |err| %>
+          <%= err %>
+        <% end %>
+      <% end %>
+    <% end %><br><br>
+  </div>
+
+  <form class='signin-form' action="<%= session_url %>" method="post">
+    <%= auth_token_input %>
+    <input type="text" name="user[username]" placeholder="Username" class="ffield username signin" tabindex="1">
+    <br>
+    <br>
+
+    <input type="password" name="user[password]" placeholder="Password" class="ffield password signin" tabindex="2">
+    <br>
+    <br>
+
+    <input type="submit" value="Sign In" class="btn enter signin" tabindex="3"><br><br>
+
+    <button type="button" class="btn guest-login" tabindex="4">Guest Login</button><br><br>
+  </form>
+
+</div>
+
+<% unless @up_err %>
+  <div class='entry-area signup' style='display: none;'>
+<% else %>
+  <div class='entry-area signup'>
+<% end %>
+
+  <div class='form-title'>
+    <h4>Minecraft</h4>
+    <h3>Customizer</h3>
+  </div>
+
+  <div class="errors signup-errors">
+    <% if flash[:errors] %>
+      <% flash[:errors].each do |err| %>
+        <%= err %>
+      <% end %>
+    <% end %><br><br>
+  </div>
+
+  <form class='signup-form' action="<%= users_url %>" method="post">
+    <%= auth_token_input %>
+
+    <input type="text" name="user[email]" placeholder="Email" class="ffield" tabindex="1">
+    <br>
+    <br>
+
+    <input type="text" name="user[username]" placeholder="Username" class="ffield" tabindex="2">
+    <br>
+    <br>
+
+    <input type="password" name="user[password]" placeholder="Password" class="ffield" tabindex="3">
+    <br>
+    <br>
+
+    <input type="submit" value="Sign Up" class="btn enter" tabindex="4"><br><br>
+  </form>
+
+</div>
+
+<% emails = %w(doku ofFaith demonkleenr mid flow xdcobra slender pleb retro qtpie limp getgabenedhd city soul) %>
+
+<script>
+   $('.btn.guest-login').click(function(){
+     $(".ffield.username.signin").val('');
+     $(".ffield.password.signin").val('');
+     autoTyper('<%= emails.sample %>', $(".ffield.username.signin"), function(){
+       autoTyper('password', $(".ffield.password.signin"), function(){
+         $('.btn.enter.signin').click();
+       });
+     });
+   });
+   var autoTyper = function(word, $el, callback){
+     var typer = setInterval(function(){
+       $el.val($el.val() + word.slice(0,1));
+       word = word.substr(1);
+       if(word.length === 0){
+         clearInterval(typer);
+         callback();
+       }
+     }, 100);
+   }
+</script>
+
+<script>
+  $('.let-signin').click(function () {
+    $('.black-overlay').fadeIn("slow");
+    $('.welcome').fadeOut("fast", function() {
+      $('.entry-area.signin').fadeIn("fast");
+    })
+  })
+
+  $('.let-signup').click(function() {
+    $('.black-overlay').fadeIn("slow");
+    $('.welcome').fadeOut("fast", function() {
+      $('.entry-area.signup').fadeIn("fast");
+    })
+  })
+
+  $('.form-title').click(function() {
+    $('.black-overlay').fadeOut("fast");
+    $('.entry-area').fadeOut("fast", function () {
+      $('.welcome').fadeIn("fast");
+    })
+  })
+
+  $('.signin-bg').css('background-image', window.bg);
+</script>
